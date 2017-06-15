@@ -1,0 +1,20 @@
+#header {
+    text-align: center;
+    margin: bottom;
+}
+
+img {
+    width: 20em;
+    height: 20em;
+    margin: 0 padding:0;
+}
+
+.images {
+    display: inline-block;
+}
+
+.favButton {
+    position: absolute;
+    top: 0px;
+    left: 50%;
+}

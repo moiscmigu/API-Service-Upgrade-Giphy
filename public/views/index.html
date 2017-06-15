@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>giphy peer</title>
+    <script src="vendors/angular.min.js" charset="utf-8"></script>
+    <script src="scripts/giphy.js" charset="utf-8"></script>
+    <script src="scripts/service/Giphy.Service.js" charset="utf-8"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="styles/style.css">
+</head>
+
+<body ng-app='myApp'>
+
+    <div class="container-fluid" ng-controller='GyphyController as gc'>
+        <div class="row">
+            <div class="col-md-12" id="header">
+
+
+                <h1>HTTP-Giphy</h1>
+                <button type="button" name="button" ng-click='gc.toggleFavs()'>show Favs</button>
+                <input type="text" placeholder='Search Giphy' ng-model='gc.searchInput' class='header'>
+                <button type="button" ng-model='gc.searchButton' ng-click='gc.giphySearch()' class='header'>Search</button>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-9" ng-hide='gc.favDiv'>
+                <div class="images" ng-repeat='results in gc.results'>
+
+
+                    <img ng-src="{{results.images.downsized.url}}" ng-click="gc.addFav($index)">
+
+
+                </div>
+                <img ng-src="{{gc.resultsRandom.image_url}}" ng-if="gc.resultsRandom" ng-click="gc.addFav($index)">
+            </div>
+
+            <!-- hidden -->
+            <div class="col-md-9" ng-show='gc.favDiv'>
+                <h1>Favorites</h1>
+                <div class="images" ng-repeat='x in gc.favDivArray'>
+
+                    <a href="{{ x }}"><img ng-src="{{ x }}" /></a>
+
+
+                </div>
+
+            </div>
+
+            <div class="col-md-3">
+                <h1>Search History</h1>
+                <ul>
+                    <li ng-repeat="x in gc.history">{{ x.history }}</li>
+                </ul>
+            </div>
+        </div>
+</body>
+
+</html>
